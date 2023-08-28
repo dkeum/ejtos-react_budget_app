@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { TiDelete } from 'react-icons/ti';
 import { AppContext } from '../context/AppContext';
+import increaseImage from '../assets/increase.png';
+import decreaseImage from '../assets/decrease.png';
 
 const ExpenseItem = (props) => {
     const { dispatch,currency} = useContext(AppContext);
@@ -36,15 +38,28 @@ const ExpenseItem = (props) => {
         });
     }
 
+    const button_style = {
+        width:'40px',
+        height:'30px'
+    }
     return (
         <tr>
-        <td>{props.name}</td>
-        <td>{currency}{props.cost}</td>
-        <td><button onClick={event=> increaseAllocation(props.name)}><img src='ejtos-react_budget_app\src\assets\decrease.png' alt="Increment"></img></button></td>
-        <td><button onClick={event=> decreaseAllocation(props.name)}><img src='C:\Users\16047\Desktop\React\mythirdapp\ejtos-react_budget_app\src\assets\decrease.png' alt="Decrement"></img></button></td>
-        <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
+            <td>{props.name}</td>
+            <td>{currency}{props.cost}</td>
+            <td>
+                <button onClick={event => increaseAllocation(props.name)} >
+                    <img src={increaseImage} alt="Increment" style={button_style}/>
+                </button>
+            </td>
+            <td>
+                <button onClick={event => decreaseAllocation(props.name)}>
+                    <img src={decreaseImage} alt="Decrement" style={button_style}/>
+                </button>
+            </td>
+            <td>
+                <TiDelete size='1.5em' onClick={handleDeleteExpense} />
+            </td>
         </tr>
     );
-};
-
+    }
 export default ExpenseItem;
